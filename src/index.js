@@ -22,13 +22,16 @@ form.addEventListener('submit', onValueSubmit);
 function onValueSubmit(event) {
   event.preventDefault();
   gallery.innerHTML = '';
-  localStorage.clear();
 
   const enteredValue = event.currentTarget[0].value.trim();
   if (enteredValue === '') {
     loadMore.classList.add('visibility-hidden');
     return Notiflix.Notify.failure('All fields must be filled!');
   }
+
+  currentSum = 0;
+
+  localStorage.clear();
   localStorage.setItem('key', enteredValue);
   render();
   form.reset();
@@ -84,10 +87,10 @@ async function onLoadMore() {
   try {
     page += 1;
     const data = await render();
+    lightbox.refresh();
   } catch (error) {
     console.log('error!', error);
   }
-  lightbox.refresh();
 }
 
 function check(current, total) {
