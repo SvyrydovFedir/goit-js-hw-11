@@ -29,6 +29,7 @@ function onValueSubmit(event) {
     return Notiflix.Notify.failure('All fields must be filled!');
   }
 
+  page = 1;
   currentSum = 0;
 
   localStorage.clear();
